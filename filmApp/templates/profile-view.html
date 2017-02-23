@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends "basis.html" %}
+{% block head_historgram %}
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+		['Оценка', 'Количество'],
+		{% for appraisal in appraisals_distr %}
+		    {% if appraisal.value < 10 %}
+		        ['{{appraisal.value}}',{{appraisal.count}}],
+		    {% else %}
+                ['{{appraisal.value}}',{{appraisal.count}}]
+		    {% endif %}
+		{% endfor %}
+    ]);
+    var options = {
+     title: 'Мои оценки фильмов',
+     hAxis: {title: 'Оценка'},
+     vAxis: {title: 'Количество'}
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById('histogram'));
+    chart.draw(data, options);
+   }
+  </script>
+{% endblock %}
+{% block content %}
+	<p class="my-lead">{{profile.user.username}}</p>
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> Username</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="input-group">
+            {{profile.user.username}}
+		</div>
+	</div>
+
+	<div class="divider"> </div>
+
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> First name</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="input-group">
+            {{profile.name}}
+		</div>
+	</div>
+
+	<div class="divider"> </div>
+
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> Surname</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="input-group">
+            {{profile.surname}}
+		</div>
+	</div>
+
+	<div class="divider"> </div>
+
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> Patronymic</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="input-group">
+            {{profile.patronymic}}
+		</div>
+	</div>
+
+	<div class="divider"> </div>
+
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> Patronymic</label>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="input-group">
+            {{profile.patronymic}}
+		</div>
+	</div>
+	<div class="divider"> </div>
+    {% if can_edit %}
+<a href="{% url 'profile' %}"><button type="submit" class="btn btn-lg btn-success btn-register">Edit!</button></a>
+    {% endif %}
+	<div class="divider"> </div>
+         <div id="histogram"></div>
+{% endblock %}

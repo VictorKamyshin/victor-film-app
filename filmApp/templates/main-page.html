@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends "basis.html" %}
+{% block content %}
+    <p class="my-lead">Film list</p> <!--шапка столбца с фильмами-->
+    <div class="col-md-2">
+        <h4>Ordered by:</h4>
+    </div>
+    <div class="col-md-2">
+         <div class="dropdown btn-group">
+             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 {{sort}}
+                 <span class="caret"></span>
+             </button>
+             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                 <li><a href="?sort=title">Title</a></li>
+                 <li><a href="?sort=rating">Rating</a></li>
+                 <li><a href="?sort=popularity">Popularity</a></li>
+                 <li><a href="?sort=date">Date</a></li>
+             </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        {% if isModerator %}
+        <a href="{% url 'create_film'%}">
+            <button type="submit" class="btn btn-success add-film-button">+ Add film</button>
+        </a>
+        {% endif %}
+    </div> <!-- конец шапки столбца с фильмами-->
+    {% for film in films %}
+    <div class="col-sm-12 col-md-12"> <!--странная конструкция, но смотрится неплохо-->
+        <div class="thumbnail col-md-12 film-block">
+            <div class="col-sm-4 col-md-3">
+                <div class="film-preview">
+                    {% load staticfiles %}
+                    <img src="http://lorempixel.com/120/120/">
+                </div>
+                <div>
+                    <div class="col-md-5">
+                        <h3>Rating</h3>
+                    </div>
+                    <div class="col-md-5">
+                        <h3> {{film.rating}}</h3>
+                    </div>
+                </div>
+            </div> <!---левая часть блока с фильмом - с картинкой и рейтингом-->
+            <div class = "col-sm-8 col-md-9 film-description">
+                <div>
+                    <a href="{% url 'film_card'%}?film_id={{film.id}}"><h3>{{film.title}}</h3></a>
+                    {% if film.isDeleted %}
+                        <h3>DELETED</h3>
+                    {% endif %}
+                </div>
+                <div>
+                    <h4>{{film.description}}</h4>
+                </div>
+                <div class="film-comments fixed-bottom">
+                    <a href="{% url 'film_card'%}?film_id={{film.id}}"><h5>comments({{film.count_of_comments}})</h5></a>
+                </div>
+            </div><!--правая часть блока с фильмом, с названием, описанием и количеством комментов-->
+        </div>
+    </div><!--конец блока с фильмом-->
+    {% endfor %}
+
+    <div class="col-md-4"> </div><!--пустые блоки, чтобы выровнять пагинатор по центру-->
+    <div class="col-md-4"> <!--пагинатор внизу страницы-->
+         <div class="fixed-bottom-mainpage-pagination">
+            <nav>
+                <ul class="pagination pagination-sm">
+                    <li>
+                        {% if films.has_previous %}
+                            <a href="?page={{ films.previous_page_number }}"><span aria-hidden="true">&laquo;</span></a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <a href="#"><span class="current">{{ films.number }}</span></a>
+                    </li>
+                    <li>
+                        {% if films.has_next %}
+                            <a href="?page={{ films.next_page_number }}"><span aria-hidden="true">&raquo;</span></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-md-4"></div><!--пустые блоки, чтобы выровнять пагинатор по центру-->
+{% endblock %}

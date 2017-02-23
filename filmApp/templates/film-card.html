@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+{% extends "basis.html" %}
+
+{% block head_historgram %}
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+		['Оценка', 'Количество'],
+		{% for appraisal in appraisals_distr %}
+		    {% if appraisal.value < 10 %}
+		        ['{{appraisal.value}}',{{appraisal.count}}],
+		    {% else %}
+                ['{{appraisal.value}}',{{appraisal.count}}]
+		    {% endif %}
+		{% endfor %}
+    ]);
+    var options = {
+     title: 'Оценки пользователей',
+     hAxis: {title: 'Оценка'},
+     vAxis: {title: 'Количество'}
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById('histogram'));
+    chart.draw(data, options);
+   }
+  </script>
+{% endblock %}
+
+{% block content %}
+		<div class="col-md-9">
+		<h2 class="my-lead">{{film_card.title}}  </h2>
+		</div>
+        {% if isModerator %}
+		<div class = "col-md-1 edit-film-button-wrapper">
+            <a href="{% url 'edit_film'%}?film_id={{film_card.id}}">
+                <button class="btn btn-info">edit card</button>
+            </a>
+        </div>
+		<div class = "cil-md-1"></div>
+        <div class = "col-md-1">
+            {% if film_card.isDeleted  %}
+            <a href="{% url 'restore_film' %}?film_id={{film_card.id}}">
+                <button class="btn btn-success">restore card</button>
+            </a>
+            {% else %}
+            <a href="{% url 'delete_film' %}?film_id={{film_card.id}}">
+                <button class="btn btn-danger">delete card</button>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+		<div>
+			<div class="col-md-5">
+				<img src="http://lorempixel.com/300/400/">
+				<h3><span>Rating : </span> <span id="film_rating">{{film_card.rating}}</span></h3>
+				<form>
+                    <div class="input-group film-vote">
+                        {% csrf_token %}
+                       {{film_vote.value}}
+                      <span class="input-group-btn">
+                        <button class="btn btn-default appraisal_button" type="button" data-film_id="{{film_card.id}}">Vote!</button>
+                      </span>
+                    </div><!-- /input-group -->
+				</form>
+				 <div id="histogram"></div>
+			</div>
+			<div class="col-md-7">
+				<div class="panel panel-default">
+				<!-- Default panel contents -->
+				  <!-- Table -->
+					<table class="table">
+						<tr> <td> Title <td> {{film_card.title}} <td> </tr>
+						<tr> <td> Producer <td> {{film_card.producer}} <td></tr>
+						<tr> <td> Country <td> {{film_card.country}} <td></tr>
+						<tr> <td> Premiere <td> {{film_card.premiere}} <td></tr>
+					</table>
+				</div>
+				<h3>Description:</h3>
+				<span>{{film_card.description}}</span>
+			</div>
+		</div>
+		<div class="divider"> </div>
+        <div name ="film_comment_button_wrapper">
+            <div class="col-md-12" id = "comment_input_form" style="display:none;">
+                <form onsubmit="return false">
+                    {% csrf_token %}
+                    <div class="input-group comment-wrapper">
+                        {{comment_form.text}}
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-success comment-submit-button"
+                            data-film_id="{{film_card.id}}"> Answer! </button>
+               </form>
+            </div>
+
+            {% if username %}
+            <button type="submit" class="btn btn-lg btn-success answer_comment_button" name="film_root_comment_add">
+                Comment!
+            </button>
+            {% endif %}
+        </div>
+
+		<div class="divider"> </div>
+		<div><h2>Comments</h2></div>
+<div name="comments_block">
+
+        <div name="phantom_of_comment"  style="display:none">
+		<div class="comment-margin"> </div> <!--ответ на первый комментарий-->
+        <div class="comment-block"> <!--один комментарий-->
+            <div class="thumbnail col-md-12 " name="">
+                <div class="col-sm-3 col-md-2">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/80/80/" class="img-circle">
+                    </div>
+                </div>
+                <div class = "col-sm-9 col-md-10">
+                    <div>
+                        <a class="link-to-the-author-profile" href="{% url 'profile_view' %}?username=">
+                            <h3 class="comment_author_field"></h3>
+                        </a>
+                    </div>
+                    <div>
+                        <h4 class="comment_text_field"></h4>
+                    </div>
+					<div class="button-group">
+                        {% if username %}
+						    <button class="answer_comment_button" data-comment_id="">Answer!</button>
+                        {% endif %}
+                        {% if isModerator %}
+                            <a class="edit-comment" href="{% url 'edit_comment' %}?comment_id=">
+                                <button>Edit</button>
+                            </a>
+                        <a class="delete-comment" href="{% url 'delete_comment' %}?comment_id=">
+                            <button>Delete!</button>
+                        </a>
+                        {% endif %}
+					</div>
+                </div>
+            </div>
+		</div><!--конец комментария-->
+        </div>
+
+
+{% for comment in comments %}
+		<div class="col-md-{{comment.level}} " name="comment-margin"> </div> <!--ответ на первый комментарий-->
+        <div class="col-md-{{comment.reverse_level}}" name="comment-block"> <!--один комментарий-->
+            <div class="thumbnail col-md-12 " name="comment-box-{{comment.id}}">
+                <div class="col-sm-3 col-md-2">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/80/80/" class="img-circle">
+                    </div>
+                </div> 
+                <div class = "col-sm-9 col-md-10">
+                    <div>
+                        <a href="{% url 'profile_view' %}?username={{comment.author.user.username}}">
+                            <h3>{{comment.author.user.username}}</h3>
+                        </a>
+                    </div>
+                    <div>
+                        {% if comment.isDeleted %}
+                        <h4> Deleted! </h4>
+                        {% else %}
+                        <h4>{{comment.text}}</h4>
+                        {% endif %}
+                    </div>
+					<div class="button-group">
+                        {% if username %}
+						    <button class="answer_comment_button" data-comment_id="{{comment.id}}">Answer!</button>
+                        {% endif %}
+                        {% if isModerator %}
+                            <a class="edit-comment" href="{% url 'edit_comment' %}?comment_id={{comment.id}}">
+                                <button>Edit</button>
+                            </a>
+                            {% if comment.isDeleted%}
+                            <a class="restore-comment" href="{% url 'restore_comment' %}?comment_id={{comment.id}}">
+                                <button>Restore!</button>
+                            </a>
+                            {% else %}
+                            <a class="delete-comment" href="{% url 'delete_comment' %}?comment_id={{comment.id}}">
+                                <button>Delete!</button>
+                            </a>
+                            {% endif %}
+                        {% endif %}
+					</div>
+                </div>
+            </div>
+		</div><!--конец комментария-->
+{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static "js/comments.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/film_appraisal.js" %}"></script>
+{% endblock %}

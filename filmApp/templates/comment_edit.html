@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends "basis.html" %}
+{% block content %}
+<p class="my-lead">Comment edit</p>
+<form action="{% url 'edit_comment'%}" method="POST">
+    <div class="col-md-4">
+        <h3>Old text</h3>
+    </div>
+    <div class="col-md-8">
+        <h3>{{comment.text}}</h3>
+    </div>
+    <div class="divider"></div>
+{% csrf_token %}
+	{% for field in form.hidden_fields %}
+		<div style="display:none;">{{ field }}</div>
+	{% endfor %}
+
+{% for field in form.visible_fields %}
+	<div class="col-md-4">
+		<div>
+			<label class="my-label"> {{field.label}}</label>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="input-group">
+            {{field}}
+		</div>
+	</div>
+    <div class="col-md-4">
+        <div>
+            <label>{{field.errors}}</label>
+        </div>
+    </div>
+	<div class="divider"> </div>
+{% endfor %}
+    <div class="col-md-4"></div>
+    <div class="col-md-8"><button type="submit" class="btn btn-lg btn-success btn-register">Edit!</button></div>
+</form>
+{% endblock %}

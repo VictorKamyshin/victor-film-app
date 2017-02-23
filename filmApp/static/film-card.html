@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>film-card</title> <!--сюда можно будет вписать название фильма-->
+	<link href="./Starter Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+	<link href="./Starter Template for Bootstrap_files/MyCss.css" rel="stylesheet" >
+</head>
+<body>
+ <!-- судя по всему, навигационный бар прилепляется в верху окна и, как следствие, места не занимает-->
+    <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- классы бутстрапа для закрепленного наверху меню, навбар, сделать его черным, закрепить сверху--->
+        <div class="container"> <!-- тоже класс бутстрапа, нужен чтобы кнопки и логотип не липли к краям-->
+            <a class="navbar-brand" href="#"> <p> To the main page  </p> </a> <!-- класс со шрифтом, размером и цветом подписи-->
+            <div id="navbar" class="navbar-collapse collapse">
+              <div class="navbar-form navbar-right"> <!-- --> 	
+                <button type="submit" class="btn btn-success">Log in</button>
+                <button type="submit" class="btn btn-info">Registration</button>
+              </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container under-nav-bar-place-holder"></div>
+    
+    <div class="col-md-9"> <!-- столбец с фильмами -->
+		<div class="col-md-11">
+		<h2 class="my-lead">Film title  </h2>
+					 </div>
+			<div class = "col-md-1"><button>edit card</button></div>
+
+		<div>
+		<div class="col-md-5">
+			<img src="http://lorempixel.com/300/400/">
+			<h3><span>Rating : </span> <span>5.5</span></h3>
+		</div>
+		<div class="col-md-7">
+			<div class="panel panel-default">
+			<!-- Default panel contents -->
+			  <!-- Table -->
+			  	<table class="table">
+					<tr> <td> Title <td> Lorem <td> </tr>
+					<tr> <td> Producer <td> Ipsum <td></tr>
+					<tr> <td> Country <td> Dolor <td></tr>
+					<tr> <td> Premiere <td> 12-12-2017 <td></tr>
+				</table>
+			</div>
+			<h3>Description:</h3>
+			<span>
+			Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi. Suspendisse potenti. Donec fermentum at quam dapibus finibus. Donec ultrices nisi in ante posuere finibus. Nullam eget urna vitae tellus vulputate lacinia id pellentesque erat.
+			</span>
+			</div>
+			</div>
+		<div class="divider"> </div>
+		<div><h2>Comments</h2></div>
+		
+        <div class="col-sm-12 col-md-12"> <!--один комментарий-->
+            <div class="thumbnail col-md-12">
+                <div class="col-sm-3 col-md-2">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/80/80/" class="img-circle">
+                    </div>
+                </div> 
+                <div class = "col-sm-9 col-md-10">
+                    <div>
+                        <h3>Username</h3>
+                    </div>
+                    <div>
+                        <h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+                    </div>
+					<div class="button-group">
+						<button>Answer!</button>
+						<button>Edit</button>
+					</div>
+                </div>
+            </div>
+		</div><!--конец комментария-->
+		
+		<div class="col-md-1"> </div> <!--ответ на первый комментарий-->
+		<div class="col-md-11">
+			<div class="thumbnail col-md-12">
+				<div class="col-sm-3 col-md-2">
+					<div class="film-preview">
+						<img src="http://lorempixel.com/80/80/" class="img-circle">
+					</div>
+				</div> 
+				<div class = "col-sm-9 col-md-10">
+					<div>
+						<h3>Username1</h3>
+					</div>
+					<div>
+						<h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+					</div>
+					<div class="button-group">
+						<button>Answer!</button>
+						<button>Edit</button>
+					</div>
+				</div><!--правая часть блока с фильмом, с названием, описанием и количеством комментов-->
+			</div>
+		</div>
+		
+		<div class="col-md-2"> </div>
+		<div class="col-md-10">
+			<div class="thumbnail col-md-12">
+				<div class="col-sm-3 col-md-2">
+					<div class="film-preview">
+						<img src="http://lorempixel.com/80/80/" class="img-circle">
+					</div>
+				</div>
+				<div class = "col-sm-9 col-md-10">
+					<div>
+						<h3>Username2</h3>
+					</div>
+					<div>
+						<h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+					</div>
+					<div class="button-group">
+						<button>Answer!</button>
+						<button>Edit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="col-md-12"> <!--в данном случае обертка не обязательна, но пусть будет для единообразия-->
+			<div class="thumbnail col-md-12">
+				<div class="col-sm-3 col-md-2">
+					<div class="film-preview">
+						<img src="http://lorempixel.com/80/80/" class="img-circle">
+					</div>
+				</div> 
+				<div class = "col-sm-9 col-md-10">
+					<div>
+						<h3>Username3</h3>
+					</div>
+					<div>
+						<h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+					</div>
+					<div class="button-group">
+						<button>Answer!</button>
+						<button>Edit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="input-group comment-wrapper">
+				<textarea id="comment" name="comment" placeholder="Enter your comment here" class="comment-iput-field" rows = "4" ></textarea>
+			</div>					 		 
+			<button type="submit" class="btn btn-lg btn-success">Answer!</button>	 
+		</div>
+
+
+    </div><!--конец левого столбца с описанием фильма и комментариями к нему-->
+    
+    <div class ="col-md-3"> <!-- столбец под всякое другое - например, под последние 5 комментариев -->
+        <h2>Last comments</h2> <!--ну или не 5-->
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        
+        
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="./Starter Template for Bootstrap_files/jquery.min.js"></script>
+    <script src="./Starter Template for Bootstrap_files/bootstrap.min.js"></script>
+</body>
