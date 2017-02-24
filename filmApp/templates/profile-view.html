@@ -9,7 +9,7 @@
     var data = google.visualization.arrayToDataTable([
 		['Оценка', 'Количество'],
 		{% for appraisal in appraisals_distr %}
-		    {% if appraisal.value < 10 %}
+		    {% if appraisal.value < 11 %}
 		        ['{{appraisal.value}}',{{appraisal.count}}],
 		    {% else %}
                 ['{{appraisal.value}}',{{appraisal.count}}]
@@ -80,17 +80,6 @@
 
 	<div class="divider"> </div>
 
-	<div class="col-md-4">
-		<div>
-			<label class="my-label"> Patronymic</label>
-		</div>
-	</div>
-	<div class="col-md-8">
-		<div class="input-group">
-            {{profile.patronymic}}
-		</div>
-	</div>
-	<div class="divider"> </div>
     {% if can_edit %}
 <a href="{% url 'profile' %}"><button type="submit" class="btn btn-lg btn-success btn-register">Edit!</button></a>
     {% endif %}
