@@ -1,3 +1,8 @@
+.main_page_rating_box{
+overflow: hidden;
+text-overflow: clip;
+}
+
 .edit-film-button-wrapper{
 margin-right:15px;
 }
