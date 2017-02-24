@@ -444,11 +444,18 @@ def film_comment(request):
             print film.count_of_comments
             previous_comments = list(Comment.customManager.filter(material_path__lt=comment.material_path,
                                                                   film__id=film.id))
-            previous_comment = previous_comments[-1]
-            return HttpResponse(json.dumps({'text': 'Hello!', 'level': comment.level,
+            if len(previous_comments) > 0:
+                previous_comment = previous_comments[-1]
+                return HttpResponse(json.dumps({'text': 'Hello!', 'level': comment.level,
                                             'reverse_level': 12 - comment.level, 'comment_id': comment.id,
                                             'username': request.user.username, 'prev_comment_id': previous_comment.id}),
                                 content_type='application/json')
+            else:
+                return HttpResponse(json.dumps({'text': 'Hello!', 'level': comment.level,
+                                            'reverse_level': 12 - comment.level, 'comment_id': comment.id,
+                                            'username': request.user.username, 'prev_comment_id': None}),
+                                content_type='application/json')
+
         else:
             return HttpResponseBadRequest('Unsupported request method')
 
