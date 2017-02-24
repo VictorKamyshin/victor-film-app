@@ -87,22 +87,22 @@ def main_page(request):
         is_moderator = check_is_moderator(request.user)
         if is_moderator:
             if sort == 'rating':
-                films = list(Film.objects.all().order_by('rating'))
+                films = list(Film.objects.all().order_by('-rating'))
             if sort == 'popularity':
-                films = list(Film.objects.all().order_by('count_of_comments'))
+                films = list(Film.objects.all().order_by('-count_of_comments'))
             if sort == 'date':
-                films = list(Film.objects.all().order_by('date_of_addition'))
+                films = list(Film.objects.all().order_by('-date_of_addition'))
             if sort == 'title':
-                films = list(Film.objects.all().order_by('title'))
+                films = list(Film.objects.all().order_by('-title'))
         else:
             if sort == 'rating':
-                films = list(Film.objects.filter(isDeleted=False).order_by('rating'))
+                films = list(Film.objects.filter(isDeleted=False).order_by('-rating'))
             if sort == 'popularity':
-                films = list(Film.objects.filter(isDeleted=False).order_by('count_of_comments'))
+                films = list(Film.objects.filter(isDeleted=False).order_by('-count_of_comments'))
             if sort == 'date':
-                films = list(Film.objects.filter(isDeleted=False).order_by('date_of_addition'))
+                films = list(Film.objects.filter(isDeleted=False).order_by('-date_of_addition'))
             if sort == 'title':
-                films = list(Film.objects.filter(isDeleted=False).order_by('title'))
+                films = list(Film.objects.filter(isDeleted=False).order_by('-title'))
         films = paginate(films, request)
         last_comments = Comment.customManager.get_last()
         username = request.user.username
