@@ -24,7 +24,7 @@ class Film(models.Model):
     country = models.CharField(max_length=255, default=u'USA', verbose_name=u'Country', null=False)
     producer = models.CharField(max_length=255, default='N/a', verbose_name=u'Producer', null=False)
     description = models.CharField(max_length=4096, verbose_name=u'film description', null=True)
-    premiere = models.DateField(default=datetime.now, verbose_name=u'film premier date')
+    premiere = models.DateField(default=datetime.today, verbose_name=u'film premier date')
     rating = models.FloatField(default=0, verbose_name=u'film rating')
     count_of_appraisal = models.IntegerField(default=0, verbose_name=u'film count of appraisal')
     date_of_addition = models.DateField(default=datetime.now, verbose_name=u'film date of addition')
@@ -97,8 +97,12 @@ class CommentManager(models.Manager):
         comment_list = self.filter(isDeleted=False).order_by('-date')[:4]
         parts_of_comments = []
         for comment in comment_list:
-            parts_of_comments.append({'film_title': comment.film.title, 'film_id': comment.film.id,
-                                      'text_part': comment.text[:15]+'...'})
+            if len(comment.text) > 15:
+                parts_of_comments.append({'film_title': comment.film.title, 'film_id': comment.film.id,
+                                          'text_part': comment.text[:15]+'...'})
+            else:
+                parts_of_comments.append({'film_title': comment.film.title, 'film_id': comment.film.id,
+                                          'text_part': comment.text})
         return parts_of_comments
 
 

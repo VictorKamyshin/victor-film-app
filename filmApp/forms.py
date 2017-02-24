@@ -2,7 +2,7 @@ from django import forms
 from filmApp.models import Profile, Film
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate as dj_authenticate
-from datetime import datetime
+from datetime import datetime, date
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -108,7 +108,7 @@ class CreateFilmForm(forms.Form):
                                                                'placeholder': "Enter film description here",
                                                                'class': "comment-input-field"}), label='Description',
                                   required=True)
-    premiere = forms.DateTimeField(initial=datetime.now(), widget=forms.DateTimeInput())
+    premiere = forms.DateField(initial=date.today(), widget=forms.DateInput())
     poster = forms.ImageField(widget=forms.FileInput(attrs={'name': "avatar"}), label=u'Poster', required=False)
 
     preview = forms.ImageField(widget=forms.FileInput(attrs={'name': "avatar"}), label=u'Preview', required=False)
