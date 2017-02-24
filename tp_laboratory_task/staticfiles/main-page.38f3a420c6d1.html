@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>main page</title>
+	<link href="./Starter Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+	<link href="./Starter Template for Bootstrap_files/MyCss.css" rel="stylesheet" >
+</head>
+<body>
+ <!-- судя по всему, навигационный бар прилепляется в верху окна и, как следствие, места не занимает-->
+    <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- классы бутстрапа для закрепленного наверху меню, навбар, сделать его черным, закрепить сверху--->
+        <div class="container"> <!-- тоже класс бутстрапа, нужен чтобы кнопки и логотип не липли к краям-->
+            <a class="navbar-brand" href="#"> <p> To the main page  </p> </a> <!-- класс со шрифтом, размером и цветом подписи-->
+            <div id="navbar" class="navbar-collapse collapse">
+              <div class="navbar-form navbar-right"> <!-- --> 	
+                <button type="submit" class="btn btn-success">Log in</button>
+                <button type="submit" class="btn btn-info">Registration</button>
+              </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container under-nav-bar-place-holder"></div>
+    
+    
+    <!-- потом надо не забыть выкинуть из цсс все ненужно - там куча мусора-->
+    <div class="col-md-9"> <!-- левый столбец на странице, под всякое разное - фильмы, регистрации авторизации и прочая -->
+        
+        <p class="my-lead">Film list</p> <!--шапка столбца с фильмами--> 
+        <div class="col-md-2">
+            <h4>Ordered by:</h4>
+        </div>
+        <div class="col-md-2">
+             <div class="dropdown btn-group">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Default <!-- эта надпись должна будет меняться в зависимости от выбора юзера-->
+                     <span class="caret"></span>
+                 </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                     <li><a href="#">Title</a></li>
+                     <li><a href="#">Rating</a></li>
+                     <li><a href="#">Popularity</a></li>
+                     <li><a href="#">Date</a></li> <!-- заметим в скобках, что логичнее было бы сортировать фильмы по дате выхода, а не по дате добавления-->
+                 </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success add-film-button">+ Add film</button>
+        </div> <!-- конец шапки столбца с фильмами-->
+        
+        <div class="col-sm-12 col-md-12"> <!--странная конструкция, но смотрится неплохо-->
+            <div class="thumbnail col-md-12 film-block">
+                <div class="col-sm-4 col-md-3">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/120/120/">
+                    </div>
+                    <div>
+                        <div class="col-md-5">
+                            <h3>Rating</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <h3> 10</h3>
+                        </div>
+                    </div>
+                </div> <!---левая часть блока с фильмом - с картинкой и рейтингом-->
+                <div class = "col-sm-8 col-md-9 film-description">
+                    <div>
+                        <h3>Film title</h3>
+                    </div>
+                    <div>
+                        <h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+                    </div>
+                    <div class="film-comments fixed-bottom">
+                        <a><h5>comments(3)</h5></a>
+                    </div>
+                </div><!--правая часть блока с фильмом, с названием, описанием и количеством комментов-->
+            </div>
+        </div><!--конец блока с фильмом-->
+        
+        <div class="col-sm-12 col-md-12"> <!--начало блока с фильмом-->
+            <div class="thumbnail col-md-12 film-block">
+                <div class="col-sm-4 col-md-3">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/120/120/">
+                    </div>
+                    <div>
+                        <div class="col-md-5">
+                            <h3>Rating</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <h3> 10</h3>
+                        </div>
+                    </div>
+                </div> 
+                <div class = "col-sm-8 col-md-9 film-description">
+                    <div>
+                        <h3>Film title</h3>
+                    </div>
+                    <div>
+                        <h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+                    </div>
+                    <div class="film-comments fixed-bottom">
+                        <a><h5>comments(3)</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div><!--конец блока с фильмом-->
+
+        <div class="col-sm-12 col-md-12">
+            <div class="thumbnail col-md-12 film-block">
+                <div class="col-sm-4 col-md-3">
+                    <div class="film-preview">
+                        <img src="http://lorempixel.com/120/120/">
+                    </div>
+                    <div>
+                        <div class="col-md-5">
+                            <h3>Rating</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <h3> 10</h3>
+                        </div>
+                    </div>
+                </div> 
+                <div class = "col-sm-8 col-md-9 film-description">
+                    <div>
+                        <h3>Film title</h3>
+                    </div>
+                    <div>
+                        <h4>Lorem ipsum dolor sit amet , consectetur adipiscing elit. Ut posuere quam eget arcu venenatis, in suscipit neque finibus. Nulla facilisi. Aenean et nisl vitae lectus ultrices placerat. Praesent eu auctor ligula. Praesent posuere nec nunc at rutrum. Suspendisse potenti. Morbi eu elementum dui. Phasellus aliquet euismod libero vitae vestibulum. Nunc et maximus est. Nulla facilisi.</h4>
+                    </div>
+                    <div class="film-comments fixed-bottom">
+                        <a><h5>comments(3)</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div><!--конец блока с фильмом-->
+        
+        <div class="col-md-4"> </div><!--пустые блоки, чтобы выровнять пагинатор по центру-->
+        <div class="col-md-4"> <!--пагинатор внизу страницы-->
+             <div class="fixed-bottom-mainpage-pagination">
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>	   
+        </div>
+        <div class="col-md-4"></div><!--пустые блоки, чтобы выровнять пагинатор по центру-->
+
+    </div><!--конец левого столбца-->
+    
+    <div class ="col-md-3"> <!-- столбец под всякое другое - например, под последние 5 комментариев -->
+        <h2>Last comments</h2> <!--ну или не 5-->
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        <div class="thumbnail">
+             <a>
+                 <h3>Commented film title</h3>       
+                 <h4>Part of comment...</h4>
+            </a>
+        </div>
+
+        
+        
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="./Starter Template for Bootstrap_files/jquery.min.js"></script>
+    <script src="./Starter Template for Bootstrap_files/bootstrap.min.js"></script>
+</body>
