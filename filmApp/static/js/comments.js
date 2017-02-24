@@ -1,6 +1,14 @@
 $('.answer_comment_button').click(answer);
 
 function answer() { //огромная такая джава-скриптовина
+
+        var previous_form = document.getElementsByName('form_clone')
+        if(previous_form.length!=0){
+            previous_form = previous_form[0]
+            var previous_form_parent_elem = document.getElementsByName(previous_form.getAttribute('parent_elem_name'))[0]
+            previous_form_parent_elem.removeChild(previous_form)
+        }
+
         var comment_id = $(this).data('comment_id');
         var parent_elem;
         if(!comment_id){
