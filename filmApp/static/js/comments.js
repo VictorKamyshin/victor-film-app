@@ -88,7 +88,7 @@ function send_comment() {
             var previous_form_parent_elem = document.getElementsByName(previous_form.getAttribute('parent_elem_name'))[0]
             previous_form_parent_elem.removeChild(previous_form)
         }
-
+        //!!
         var btn = document.getElementsByName('film_root_comment_add')[0]
         btn.style.display="block";
 
