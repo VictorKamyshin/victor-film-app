@@ -497,7 +497,10 @@ def check_user_rights(user):
 
 def check_is_moderator(user):
     if user.is_authenticated():
-        return Profile.objects.get(user=user).isModerator
+        try:
+            return Profile.objects.get(user=user).isModerator
+        except ObjectDoesNotExist:
+            return False
     else:
         return False
 
