@@ -204,7 +204,7 @@ def registration_page(request):
 
             email_subject = u'Registration confirm'
             email_body = u"Hey %s, thanks for signing up. To activate your account, click this link within \
-            48hours http://127.0.0.1:8000/registration_confirm/?activation_key=%s" % (username, activation_key)
+            48hours https://victor-film-app.herokuapp.com/registration_confirm/?activation_key=%s" % (username, activation_key)
             send_mail(email_subject, email_body, settings.EMAIL_HOST_USER, [email], fail_silently=False)
             last_comments = Comment.customManager.get_last()
             return render(request, 'registration_success.html', {'last_comments': last_comments})
