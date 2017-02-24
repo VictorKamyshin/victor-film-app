@@ -68,7 +68,7 @@
                 <ul class="pagination pagination-sm">
                     <li>
                         {% if films.has_previous %}
-                            <a href="?page={{ films.previous_page_number }}"><span aria-hidden="true">&laquo;</span></a>
+                            <a href="?page={{ films.previous_page_number }}&sort={{sort}}"><span aria-hidden="true">&laquo;</span></a>
                         {% endif %}
                     </li>
                     <li>
@@ -76,7 +76,7 @@
                     </li>
                     <li>
                         {% if films.has_next %}
-                            <a href="?page={{ films.next_page_number }}"><span aria-hidden="true">&raquo;</span></a>
+                            <a href="?page={{ films.next_page_number }}&sort={{sort}}"><span aria-hidden="true">&raquo;</span></a>
                         {% endif %}
                     </li>
                 </ul>
