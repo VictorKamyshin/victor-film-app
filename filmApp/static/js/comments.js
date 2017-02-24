@@ -55,11 +55,14 @@ function send_comment() {
                 comment_clone.querySelector(".comment-margin").className =("col-md-"+resp.level);
                 comment_clone.querySelector(".comment-block").className = ("col-md-"+resp.reverse_level);
                 console.log(comment_clone.querySelector(".link-to-the-author-profile").getAttribute("href"))
+
                 comment_clone.querySelector(".link-to-the-author-profile").setAttribute("href",
                     comment_clone.querySelector(".link-to-the-author-profile").getAttribute("href")+resp.username)
 
-                comment_clone.querySelector(".edit-comment").setAttribute("href",
-                    comment_clone.querySelector(".edit-comment").getAttribute("href")+resp.comment_id)
+                edit_comment = comment_clone.querySelector(".edit-comment")
+                if(edit_comment){
+                    edit_comment.setAttribute("href", edit_comment.getAttribute("href")+resp.comment_id)
+                }
 
                 delete_comment = comment_clone.querySelector(".delete-comment")
                 if(delete_comment){
