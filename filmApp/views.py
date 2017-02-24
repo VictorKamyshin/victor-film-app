@@ -208,6 +208,10 @@ def registration_page(request):
             send_mail(email_subject, email_body, settings.EMAIL_HOST_USER, [email], fail_silently=False)
             last_comments = Comment.customManager.get_last()
             return render(request, 'registration_success.html', {'last_comments': last_comments})
+        else:
+            user = request.user.username
+            last_comments = Comment.customManager.get_last()
+            return render(request, 'registration.html', {'last_comments': last_comments, 'form': form, 'username': user})
     else:
         form = RegistrationForm
         user = request.user.username
