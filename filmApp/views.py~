@@ -433,7 +433,7 @@ def film_comment(request):
             film_id = request.POST.get('film_id')
             comment_id = request.POST.get('commented_comment_id')
             text = request.POST.get('text')
-            if text == '':
+            if text is None:
                 return HttpResponseBadRequest('Empty comment not allowed!')
             film = Film.objects.get(id=film_id)
             if comment_id is not None:
