@@ -433,6 +433,8 @@ def film_comment(request):
             film_id = request.POST.get('film_id')
             comment_id = request.POST.get('commented_comment_id')
             text = request.POST.get('text')
+            if text is None:
+                return HttpResponseBadRequest('Empty comment not allowed!')
             film = Film.objects.get(id=film_id)
             if comment_id is not None:
                 if comment_id.isdigit():
@@ -448,13 +450,13 @@ def film_comment(request):
                                                                   film__id=film.id).order_by('material_path'))
             if len(previous_comments) > 0:
                 previous_comment = previous_comments[-1]
-                return HttpResponse(json.dumps({'text': 'Hello!', 'level': comment.level,
+                return HttpResponse(json.dumps({'text': text, 'level': comment.level,
                                                 'reverse_level': 12 - comment.level, 'comment_id': comment.id,
                                                 'username': request.user.username,
                                                 'prev_comment_id': previous_comment.id}),
                                     content_type='application/json')
             else:
-                return HttpResponse(json.dumps({'text': 'Hello!', 'level': comment.level,
+                return HttpResponse(json.dumps({'text': text, 'level': comment.level,
                                                 'reverse_level': 12 - comment.level, 'comment_id': comment.id,
                                                 'username': request.user.username, 'prev_comment_id': None}),
                                     content_type='application/json')
